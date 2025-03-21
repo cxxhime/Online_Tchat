@@ -1,3 +1,9 @@
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// Définir __dirname
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 import express from 'express';
 import http from 'http';
 import { WebSocketServer } from 'ws';
@@ -15,10 +21,7 @@ wss.on('error', (error) => {
     console.error('Erreur sur le WebSocketServer :', error);
 });
 
-// Obtenir le répertoire du fichier actuel
-const __dirname = new URL('.', import.meta.url).pathname;
-
-// Middleware pour servir les fichiers statiques (comme index.html, script.js, etc.)
+// Middleware pour servir les fichiers statiques
 app.use(express.static(__dirname));
 
 // Route pour la racine
